@@ -5,6 +5,7 @@ import android.database.sqlite.SQLiteDatabase;
 
 import com.nianzhen.soundrecording.bean.DaoMaster;
 import com.nianzhen.soundrecording.bean.DaoSession;
+import com.nianzhen.soundrecording.utils.CrashHandler;
 
 /**
  * Created by Administrator on 2015/12/11.
@@ -19,6 +20,7 @@ public class SoundApplocation extends Application {
     public void onCreate() {
         super.onCreate();
         setupDatabase();
+        initCrashHandle();
     }
 
     private void setupDatabase() {
@@ -39,6 +41,11 @@ public class SoundApplocation extends Application {
 
     public SQLiteDatabase getDb() {
         return db;
+    }
+
+    private void initCrashHandle() {
+        CrashHandler crashHandler = CrashHandler.getInstatance();
+        crashHandler.init(this);
     }
 
 }

@@ -29,7 +29,7 @@ public class CrashHandler implements Thread.UncaughtExceptionHandler {
     private static final String TAG = "Cash";
     private static final boolean Debug = true;
 
-    private static final String PATH = Environment.getExternalStorageDirectory().getPath() + "/CrashTest/log/";
+    private static final String PATH = Environment.getExternalStorageDirectory().getPath() + "/SoundRecording/Logger/";
     private static final String FILE_NAME = "crash_";
     private static final String FILE_NAME_SUFFIX = ".txt";
 
@@ -37,7 +37,7 @@ public class CrashHandler implements Thread.UncaughtExceptionHandler {
     private Thread.UncaughtExceptionHandler mDefaultCrashHandler;
     private Context mContext;
 
-    private static final int MAX_LOG_COUNT = 3;
+    private static final int MAX_Logger_COUNT = 3;
 
     private CrashHandler() {
 
@@ -69,7 +69,9 @@ public class CrashHandler implements Thread.UncaughtExceptionHandler {
         }
         ex.printStackTrace();
 
-        clearLogs(false, getFiles(PATH, FILE_NAME));
+        clearLoggers(false, getFiles(PATH, FILE_NAME));
+
+        Log.e(TAG, PATH);
 
         //如果系统提供了默认的异常处理器，则交给系统去结束程序，否则就由自己结束自己
         if (mDefaultCrashHandler != null) {
@@ -84,7 +86,7 @@ public class CrashHandler implements Thread.UncaughtExceptionHandler {
         //如果SD卡不存在或无法使用，则无法把异常信息写入SD卡
         if (!Environment.getExternalStorageState().equals(Environment.MEDIA_MOUNTED)) {
             if (Debug) {
-                Log.w(TAG, "sdcard unmounted.skip dump exception");
+                Log.e(TAG, "sdcard unmounted.skip dump exception");
                 return;
             }
         }
@@ -135,13 +137,13 @@ public class CrashHandler implements Thread.UncaughtExceptionHandler {
         pw.println(Build.CPU_ABI + "__" + Build.CPU_ABI2);
     }
 
-    public void clearLogs(boolean all, File[] fs) {
+    public void clearLoggers(boolean all, File[] fs) {
         if (fs != null) {
             if (all) {
                 for (int i = 0; i < fs.length; i++) {
                     fs[i].delete();
                 }
-            } else if (fs.length > MAX_LOG_COUNT) {
+            } else if (fs.length > MAX_Logger_COUNT) {
 
                 Arrays.sort(fs, new Comparator<File>() {
 
@@ -152,7 +154,7 @@ public class CrashHandler implements Thread.UncaughtExceptionHandler {
                     }
                 });
 
-                int t = fs.length - MAX_LOG_COUNT;
+                int t = fs.length - MAX_Logger_COUNT;
                 for (int i = 0; i < t; i++) {
                     fs[i].delete();
                 }
