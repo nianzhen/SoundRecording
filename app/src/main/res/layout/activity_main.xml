@@ -12,13 +12,15 @@
         android:id="@+id/editTexte"
         android:layout_width="match_parent"
         android:layout_height="50dp"
-        android:inputType="text" />
+        android:inputType="text"
+        android:visibility="gone" />
 
     <ListView
         android:id="@+id/list"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_below="@id/editTexte">
+        android:layout_below="@id/editTexte"
+        android:visibility="gone">
 
     </ListView>
 
@@ -28,7 +30,8 @@
         android:layout_height="wrap_content"
         android:layout_alignParentBottom="true"
         android:layout_centerHorizontal="true"
-        android:background="@drawable/target" />
+        android:background="@drawable/target"
+        android:visibility="gone" />
 
     <TextView
         android:id="@+id/recounding"
@@ -38,4 +41,8 @@
         android:text="正在录音"
         android:textSize="15sp"
         android:visibility="gone" />
+
+    <com.nianzhen.soundrecording.View.WaveView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent" />
 </RelativeLayout>
