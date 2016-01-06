@@ -71,7 +71,7 @@ public class CrashHandler implements Thread.UncaughtExceptionHandler {
 
         clearLoggers(false, getFiles(PATH, FILE_NAME));
 
-        Log.e(TAG, PATH);
+        L.e(TAG, PATH);
 
         //如果系统提供了默认的异常处理器，则交给系统去结束程序，否则就由自己结束自己
         if (mDefaultCrashHandler != null) {
@@ -86,7 +86,7 @@ public class CrashHandler implements Thread.UncaughtExceptionHandler {
         //如果SD卡不存在或无法使用，则无法把异常信息写入SD卡
         if (!Environment.getExternalStorageState().equals(Environment.MEDIA_MOUNTED)) {
             if (Debug) {
-                Log.e(TAG, "sdcard unmounted.skip dump exception");
+                L.e(TAG, "sdcard unmounted.skip dump exception");
                 return;
             }
         }
@@ -106,7 +106,7 @@ public class CrashHandler implements Thread.UncaughtExceptionHandler {
             ex.printStackTrace(pw);
             pw.close();
         } catch (Exception e) {
-            Log.e(TAG, "dump crash info failed");
+            L.e(TAG, "dump crash info failed");
         }
     }
 

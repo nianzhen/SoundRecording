@@ -119,20 +119,19 @@ public class WaveView extends View {
         float f1 = 3 * radius / 10;
 //         计算百分比距离
         float f2 = f1 * firstCount / 100.0F;
+
+        // 最小圆形
         mWaveCircle.setAlpha(0);
         mWaveCircle.setStrokeWidth(5);
         canvas.drawCircle(width / 2, height / 2, radius + f2, mWaveCircle);
-        // 最小圆形
+        // 第二层圆形
         mWaveCircle.setAlpha(120);
         mWaveCircle.setStrokeWidth(3);
         canvas.drawCircle(width / 2, height / 2, radius + f2 + 2, mWaveCircle);
-
         // 第二层圆形
         mWaveCircle.setAlpha(220);
         mWaveCircle.setStrokeWidth(1);
         canvas.drawCircle(width / 2, height / 2, radius + f2 + 3, mWaveCircle);
-
-        // 第三层圆形
 //        canvas.drawCircle(width / 2, height / 2, radius + 40, mWaveCircle);
         // 波浪的容器
         canvas.drawCircle(width / 2, height / 2, radius - f2 / 3, mContainerCircle);

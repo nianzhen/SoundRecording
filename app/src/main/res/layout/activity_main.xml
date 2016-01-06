@@ -1,48 +1,51 @@
-<?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/blick"
-    android:paddingBottom="@dimen/activity_vertical_margin"
-    android:paddingLeft="@dimen/activity_horizontal_margin"
-    android:paddingRight="@dimen/activity_horizontal_margin"
-    android:paddingTop="@dimen/activity_vertical_margin">
+    android:orientation="vertical"
+    tools:context="com.example.toolbar.MainActivity">
 
-    <EditText
-        android:id="@+id/editTexte"
-        android:layout_width="match_parent"
-        android:layout_height="50dp"
-        android:inputType="text"
-        android:visibility="gone" />
-
-    <ListView
-        android:id="@+id/list"
+    <android.support.v7.widget.Toolbar xmlns:app="http://schemas.android.com/apk/res-auto"
+        android:id="@+id/toolbar"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_below="@id/editTexte"
-        android:visibility="gone">
+        android:background="@color/seagreen"
+        android:minHeight="?attr/actionBarSize"
+        android:popupTheme="@style/ThemeOverlay.AppCompat.Light"
+        app:theme="@style/ThemeOverlay.AppCompat.ActionBar">
 
-    </ListView>
+        <TextView
+            android:id="@+id/title"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerInParent="true"
+            android:layout_gravity="center"
+            android:text="首页"
+            android:textColor="@android:color/white"
+            android:textSize="20sp"
+            android:textStyle="bold" />
+    </android.support.v7.widget.Toolbar>
 
-    <com.nianzhen.soundrecording.View.RecordButton
-        android:id="@+id/soundrecording"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignParentBottom="true"
-        android:layout_centerHorizontal="true"
-        android:background="@drawable/target"
-        android:visibility="gone" />
-
-    <TextView
-        android:id="@+id/recounding"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_centerInParent="true"
-        android:text="正在录音"
-        android:textSize="15sp"
-        android:visibility="gone" />
-
-    <com.nianzhen.soundrecording.View.WaveView
+    <android.support.v4.widget.DrawerLayout
+        android:id="@+id/drawer_layout"
         android:layout_width="match_parent"
-        android:layout_height="match_parent" />
-</RelativeLayout>
+        android:layout_height="match_parent">
+
+        <FrameLayout
+            android:id="@+id/drawer_content"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent" />
+
+        <FrameLayout
+            android:id="@+id/drawer_menu"
+            android:layout_width="300dp"
+            android:layout_height="match_parent"
+            android:layout_gravity="start"
+            android:background="#ff333333"
+            android:orientation="vertical">
+
+            <include layout="@layout/fragment_drawer_menu" />
+        </FrameLayout>
+
+    </android.support.v4.widget.DrawerLayout>
+</LinearLayout>

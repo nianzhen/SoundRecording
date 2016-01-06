@@ -1,6 +1,6 @@
 package com.nianzhen.soundrecording.http;
 
-import com.nianzhen.soundrecording.Config;
+import com.nianzhen.soundrecording.BuildConfig;
 import com.squareup.okhttp.OkHttpClient;
 
 import java.util.concurrent.TimeUnit;
@@ -29,7 +29,7 @@ public class HttpClient {
             okHttpClient.setReadTimeout(READ_TIMEOUT_MILLIS, TimeUnit.MILLISECONDS);
             // TODO: 2015/12/9 这里以后要做签名验证
             RestAdapter restAdapter = new RestAdapter.Builder()
-                    .setLogLevel(Config.DEBUG ? RestAdapter.LogLevel.FULL : RestAdapter.LogLevel.NONE)
+                    .setLogLevel(BuildConfig.IS_DEBUG ? RestAdapter.LogLevel.FULL : RestAdapter.LogLevel.NONE)
                     .setRequestInterceptor(new RequestInterceptor() {
                         @Override
                         public void intercept(RequestFacade req) {
